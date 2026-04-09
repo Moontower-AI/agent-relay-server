@@ -126,7 +126,7 @@ Iterate until `nextCursor` is `null`.
 ## Admin API reference
 
 | Method | Path                                       | Purpose                                            |
-| ------ | ------------------------------------------ | -------------------------------------------------- | -------- |
+| ------ | ------------------------------------------ | -------------------------------------------------- |
 | POST   | `/admin/webhooks`                          | Create webhook, returns plaintext secret once      |
 | GET    | `/admin/webhooks`                          | List webhooks                                      |
 | GET    | `/admin/webhooks/:id`                      | Get webhook                                        |
@@ -140,6 +140,7 @@ Iterate until `nextCursor` is `null`.
 | DELETE | `/admin/agents/:id`                        | Delete agent (also removes from all subscriptions) |
 | POST   | `/admin/agents/:id/rotate-key`             | Rotate API key (returns new plaintext once)        |
 | POST   | `/admin/agents/:id/disable`                | Set `{ disabled: true \| false }`                  |
+
 
 ## Security notes
 
