@@ -139,7 +139,7 @@ Iterate until `nextCursor` is `null`.
 | GET    | `/admin/agents/:id`                        | Get agent                                          |
 | DELETE | `/admin/agents/:id`                        | Delete agent (also removes from all subscriptions) |
 | POST   | `/admin/agents/:id/rotate-key`             | Rotate API key (returns new plaintext once)        |
-| POST   | `/admin/agents/:id/disable`                | Set `{ disabled: true                              | false }` |
+| POST   | `/admin/agents/:id/disable`                | Set `{ disabled: true \| false }`                  |
 
 ## Security notes
 
