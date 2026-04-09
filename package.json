@@ -4,10 +4,14 @@
   "description": "Webhook relay server with per-agent inbox for poll-based consumption",
   "main": "src/index.js",
   "type": "commonjs",
+  "bin": {
+    "relay": "bin/relay.js"
+  },
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "node --test tests/"
+    "test": "node --test tests/",
+    "cli": "node bin/relay.js"
   },
   "engines": {
     "node": ">=18"

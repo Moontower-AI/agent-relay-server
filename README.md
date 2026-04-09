@@ -88,6 +88,52 @@ curl -sS -X POST http://localhost:3000/admin/webhooks/<webhookId>/subscribers \
 
 Multiple agents can subscribe to the same webhook — each gets its own delivery row.
 
+## CLI
+
+A small project CLI wraps the admin HTTP API so you don't have to hand-build `curl` invocations. It reads `ADMIN_TOKEN` from `.env` automatically and defaults the base URL to `http://localhost:$PORT`.
+
+```bash
+# Via npm (pass flags after `--`)
+npm run cli -- webhook create primary
+npm run cli -- agent create worker-1
+
+# Via the `bin` entry (after `npm install` or `npm link`)
+npx relay webhook list
+npx relay agent disable <agentId>
+```
+
+All commands:
+
+```
+relay webhook create <name>
+relay webhook list
+relay webhook get <id>
+relay webhook delete <id>
+relay webhook rotate-secret <id>
+relay webhook subscribe <webhookId> <agentId>
+relay webhook unsubscribe <webhookId> <agentId>
+
+relay agent create <name>
+relay agent list
+relay agent get <id>
+relay agent delete <id>
+relay agent rotate-key <id>
+relay agent disable <id>
+relay agent enable <id>
+```
+
+Flags (accepted on any command):
+
+- `--base-url <url>` — override the default (`$RELAY_BASE_URL` or `http://localhost:$PORT`)
+- `--token <value>` — override `$ADMIN_TOKEN`
+- `--json` — emit raw JSON (suppresses the human banner; pipeable to `jq`)
+
+Creating a webhook or agent prints the `secret` / `apiKey` inside a banner — they are returned **once only**. The `--json` mode is the supported way to capture them programmatically:
+
+```bash
+APIKEY=$(npm run cli --silent -- agent create scripted --json | jq -r .apiKey)
+```
+
 ## Agent polling loop
 
 ```bash
